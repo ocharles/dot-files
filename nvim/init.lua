@@ -78,6 +78,7 @@ catppuccin.setup({
 
 -- Leader key bindings
 local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>ct', '<cmd>TroubleToggle<CR>',                   opts)
 vim.api.nvim_set_keymap('n', '<space>e',  '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<CR>',  opts)
 vim.api.nvim_set_keymap('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<CR>',  opts)
@@ -110,7 +111,7 @@ local util = require('lspconfig').util
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 require('lspconfig').hls.setup {
-  -- cmd = { "haskell-language-server", "--lsp" },
+  cmd = { "haskell-language-server", "--lsp" },
   on_attach = on_attach,
   flags = { debounce_text_changes = 150 },
   root_dir = util.root_pattern("cabal.project") ,
@@ -182,10 +183,6 @@ cmp.setup {
   window = {
   },
   mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
