@@ -76,6 +76,10 @@ catppuccin.setup({
   }
 })
 
+-- EasyAlign
+vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)', {})
+vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
+
 -- Leader key bindings
 local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<space>ct', '<cmd>TroubleToggle<CR>',                   opts)
