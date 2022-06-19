@@ -93,6 +93,7 @@ vim.api.nvim_set_keymap('n', '<space>ff', '<cmd>Telescope find_files<CR>',      
 vim.api.nvim_set_keymap('n', '<space>fs', '<cmd>write<cr>',                           opts)
 vim.api.nvim_set_keymap('n', '<space>bb', '<cmd>Telescope buffers<CR>',               opts)
 vim.api.nvim_set_keymap('n', '<space>sp', '<cmd>Telescope live_grep<CR>',             opts)
+vim.api.nvim_set_keymap('n', '<space>gg', '<cmd>G<CR>',             opts)
 
 -- LSP leader key bindings
 local on_attach = function(client, bufnr)
