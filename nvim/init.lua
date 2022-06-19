@@ -55,6 +55,8 @@ require('packer').startup(function()
   use 'junegunn/vim-easy-align'
 
   use 'phaazon/hop.nvim'
+
+  use 'mcauley-penney/tidy.nvim'
 end)
 
 -- Vim options
@@ -227,5 +229,8 @@ require("hop").setup()
 vim.api.nvim_set_keymap('n', '<Space>hc', "<cmd>:HopChar2<cr>", {})
 vim.api.nvim_set_keymap('n', '<Space>hh', "<cmd>:HopWord<cr>", {})
 vim.api.nvim_set_keymap('n', '<Space>hl', "<cmd>:HopLineStart<cr>", {})
+
+-- tidy
+require('tidy').setup()
 
 vim.cmd[[colorscheme catppuccin]]
