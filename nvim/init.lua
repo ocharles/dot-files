@@ -193,6 +193,8 @@ cmp.setup {
     keyword_length = 4
   },
   window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered()
   },
   mapping = cmp.mapping.preset.insert({
   }),
