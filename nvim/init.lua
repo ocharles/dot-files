@@ -20,7 +20,7 @@ require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
-  use 'arkav/lualine-lsp-progress' 
+  use 'arkav/lualine-lsp-progress'
 
   use 'nvim-treesitter/nvim-treesitter'
   use 'nvim-treesitter/playground'
@@ -57,6 +57,7 @@ require('packer').startup(function()
   use 'phaazon/hop.nvim'
 
   use 'mcauley-penney/tidy.nvim'
+  use 'famiu/bufdelete.nvim'
 end)
 
 -- Vim options
@@ -86,6 +87,7 @@ vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {})
 
 -- Leader key bindings
 local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<space>bd', '<cmd>Bdelete<CR>',                         opts)
 vim.api.nvim_set_keymap('n', '<space>ct', '<cmd>TroubleToggle<CR>',                   opts)
 vim.api.nvim_set_keymap('n', '<space>e',  '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
 vim.api.nvim_set_keymap('n', '[d',        '<cmd>lua vim.diagnostic.goto_prev()<CR>',  opts)
@@ -95,7 +97,7 @@ vim.api.nvim_set_keymap('n', '<space>ff', '<cmd>Telescope find_files<CR>',      
 vim.api.nvim_set_keymap('n', '<space>fs', '<cmd>write<cr>',                           opts)
 vim.api.nvim_set_keymap('n', '<space>bb', '<cmd>Telescope buffers<CR>',               opts)
 vim.api.nvim_set_keymap('n', '<space>sp', '<cmd>Telescope live_grep<CR>',             opts)
-vim.api.nvim_set_keymap('n', '<space>gg', '<cmd>G<CR>',             opts)
+vim.api.nvim_set_keymap('n', '<space>gg', '<cmd>G<CR>',                               opts)
 
 -- LSP leader key bindings
 local on_attach = function(client, bufnr)
@@ -142,14 +144,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 -- lualine
 require('lualine').setup {
-  options = { 
+  options = {
     theme = 'tokyonight',
   },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {
-      'branch', 
-      'diff', 
+      'branch',
+      'diff',
       {
         'diagnostics',
         symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
@@ -159,7 +161,7 @@ require('lualine').setup {
     lualine_x = {'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
-  }, 
+  },
 }
 
 -- Enable treesitter syntax highlighting
