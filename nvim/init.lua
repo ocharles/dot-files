@@ -53,6 +53,8 @@ require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
 
   use 'junegunn/vim-easy-align'
+
+  use 'phaazon/hop.nvim'
 end)
 
 -- Vim options
@@ -184,6 +186,9 @@ cmp.setup {
       require('luasnip').lsp_expand(args.body)
     end
   },
+  completion = {
+    keyword_length = 4
+  },
   window = {
   },
   mapping = cmp.mapping.preset.insert({
@@ -215,5 +220,11 @@ require('telescope').setup {
 }
 
 require("telescope").load_extension("ui-select")
+
+-- hop.nvim
+require("hop").setup()
+vim.api.nvim_set_keymap('n', '<Space>hc', "<cmd>:HopChar2<cr>", {})
+vim.api.nvim_set_keymap('n', '<Space>hh', "<cmd>:HopWord<cr>", {})
+vim.api.nvim_set_keymap('n', '<Space>hl', "<cmd>:HopLineStart<cr>", {})
 
 vim.cmd[[colorscheme catppuccin]]
