@@ -58,16 +58,18 @@ require('packer').startup(function()
 
   use 'mcauley-penney/tidy.nvim'
   use 'famiu/bufdelete.nvim'
+  use 'j-hui/fidget.nvim'
 end)
 
 -- Vim options
-vim.opt.signcolumn = 'yes'
-vim.opt.number = true
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.expandtab = true
+vim.opt.number = true
+vim.opt.scrolloff = 5
+vim.opt.shiftwidth = 2
+vim.opt.signcolumn = 'yes'
+vim.opt.tabstop = 2
 
 -- tokyonight
 vim.g.tokyonight_style = "tokyonight"
@@ -95,6 +97,7 @@ vim.api.nvim_set_keymap('n', ']d',        '<cmd>lua vim.diagnostic.goto_next()<C
 vim.api.nvim_set_keymap('n', '<space>q',  '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<space>ff', '<cmd>Telescope find_files<CR>',            opts)
 vim.api.nvim_set_keymap('n', '<space>fs', '<cmd>write<cr>',                           opts)
+vim.api.nvim_set_keymap('n', '<space>ft', '<cmd>NvimTreeToggle<CR>',                  opts)
 vim.api.nvim_set_keymap('n', '<space>bb', '<cmd>Telescope buffers<CR>',               opts)
 vim.api.nvim_set_keymap('n', '<space>sp', '<cmd>Telescope live_grep<CR>',             opts)
 vim.api.nvim_set_keymap('n', '<space>gg', '<cmd>G<CR>',                               opts)
@@ -244,5 +247,18 @@ vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction 
 vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
 vim.api.nvim_set_keymap('',  't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",                         {})
 vim.api.nvim_set_keymap('',  'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",                        {})
+
+-- luasnip
+local luasnip = require('luasnip')
+local snippet = luasnip.snippet
+local text_node = luasnip.text_node
+luasnip.add_snippets('haskell', {
+  snippet('ostrings', {
+    text_node('{-# language OverloadedStrings #-}')
+  })
+})
+
+-- j-hui/fidget.nvim
+require('fidget').setup{}
 
 vim.cmd[[colorscheme catppuccin]]
